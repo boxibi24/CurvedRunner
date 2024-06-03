@@ -28,11 +28,11 @@ public class Move : MonoBehaviour
         GameManager.Instance.OnStateChange += GameManager_OnStateChange;
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         GameManager.Instance.OnStateChange -= GameManager_OnStateChange;
     }
-
+*/
     private void GameManager_OnStateChange(object sender, System.EventArgs e)
     {
         if (GameManager.Instance.IsGameOver())

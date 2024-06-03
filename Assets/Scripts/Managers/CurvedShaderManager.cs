@@ -40,22 +40,14 @@ public class CurvedShaderManager : MonoBehaviour
         while (elapsedTime < valuesLerpTime)
         {
             elapsedTime += Time.deltaTime;
-            isChangingShaderValues = true;
             float lerpInterval = elapsedTime / valuesLerpTime;
             CurvedShaderManager.sidewaysStrenghtValue = Mathf.SmoothStep(startValueSideways, targetValueSideways, lerpInterval);
             CurvedShaderManager.backwardsStrenghtValue = Mathf.SmoothStep(startValueBackwards, targetValueBackwards, lerpInterval);
+            SetShaderStrenghtsOnRenderers(FindObjectsOfType<Renderer>());
             yield return null;
         }
-        isChangingShaderValues = false;
     }
-    private void Update()
-    {
-        if (isChangingShaderValues)
-        {
-            ChangeShaderStrenghtsOnRenderers(FindObjectsOfType<Renderer>());
-        }
-    }
-    public static void ChangeShaderStrenghtsOnRenderers(Renderer[] renderers)
+    public static void SetShaderStrenghtsOnRenderers(Renderer[] renderers)
     {
         foreach (Renderer renderer in renderers)
         {

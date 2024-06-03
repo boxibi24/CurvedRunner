@@ -44,14 +44,14 @@ public class GameInput : MonoBehaviour
         GameManager.Instance.ToogleGamePause();
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         playerInputActions.Player.MoveLeft.performed -= MoveLeft_performed;
         playerInputActions.Player.MoveRight.performed -= MoveRight_performed;
 
         playerInputActions.Dispose();
     }
-
+*/
     private void MoveRight_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnPlayerMoveRight?.Invoke(this, EventArgs.Empty);

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float Z_OFFSET_VALUE = 0.001f;
+    private float Z_OFFSET_VALUE = 0.01f;
     public static Player Instance {  get; private set; }
     public event EventHandler OnJump;
     public event EventHandler OnCurveShaderChange;
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private float currentZOffset;
     [SerializeField] private float jumpTime = 0.5f;
     private bool isJumping;
+    int roadSectionSpawnCounter = 0;
     private enum PlayerPositionState
     {
         Left,
@@ -93,7 +94,16 @@ public class Player : MonoBehaviour
         {
             if (currentZOffset > 0) { currentZOffset = 0; }
             else { currentZOffset = Z_OFFSET_VALUE; }
-            Instantiate(GetRandomRoadSectionSO().prefab, new Vector3(0, currentZOffset, roadSectionLength), Quaternion.identity);
+            Transform roadSection = Instantiate(GetRandomRoadSectionSO().prefab, new Vector3(0, currentZOffset, roadSectionLength), Quaternion.identity);
+            if (roadSectionSpawnCounter == 3)
+            {
+                roadSectionSpawnCounter = 0;
+                roadSection.GetComponent<RoadSection>().SetShaderChangeTriggerActive();
+            }
+            else
+            {
+                roadSectionSpawnCounter++;
+            }
         }
         else if (other.gameObject.CompareTag("ShaderChangeTrigger"))
         {

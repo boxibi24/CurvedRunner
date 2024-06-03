@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     public void GoBackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        Loader.Load(Loader.Scene.MainMenuScene);
     }
 
     public void ToogleGamePause()

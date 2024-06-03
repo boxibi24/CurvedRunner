@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class RoadSection : MonoBehaviour
 {
+    [SerializeField] private GameObject shaderChangeTriggerGameObject;
+
     private void Start()
     {
-        CurvedShaderManager.ChangeShaderStrenghtsOnRenderers(GetComponentsInChildren<Renderer>());
+        CurvedShaderManager.SetShaderStrenghtsOnRenderers(GetComponentsInChildren<Renderer>());
+    }
+
+    public void SetShaderChangeTriggerActive()
+    {
+        shaderChangeTriggerGameObject.SetActive(true);
     }
 }

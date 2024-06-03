@@ -1280,6 +1280,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadSectionBase Variant 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5576355156518253320, guid: ffb4fc6cd0cdcf94fbd1a5dd30c48f0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffb4fc6cd0cdcf94fbd1a5dd30c48f0c, type: 3}
 --- !u!4 &8806858111849744627 stripped
