@@ -1476,7 +1476,7 @@ PrefabInstance:
     - target: {fileID: 8860737293265826810, guid: 85ddc1816fbd43a4eb6ec0451dfc8137,
         type: 3}
       propertyPath: playerRunSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8860737293265826810, guid: 85ddc1816fbd43a4eb6ec0451dfc8137,
         type: 3}
@@ -1807,7 +1807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minStrengthsValue: -0.01
   maxStrengthsValue: 0.01
-  valuesLerpTime: 5
+  valuesLerpTime: 3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
