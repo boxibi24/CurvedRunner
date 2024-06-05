@@ -66,6 +66,22 @@ public class CurvedShaderManager : MonoBehaviour
             }
         }
     }
+    public static void SetShaderStrenghtsOnRenderers(Renderer renderer)
+    {
+        Material[] materials = renderer.materials;
+
+        foreach (Material mat in materials)
+        {
+            if (mat.HasProperty(shaderSidewaysStrengthsPropertyName))
+            {
+                mat.SetFloat(shaderSidewaysStrengthsPropertyName, sidewaysStrenghtValue);
+            }
+            if (mat.HasProperty(shaderBackwardsStrengthsPropertyName))
+            {
+                mat.SetFloat(shaderBackwardsStrengthsPropertyName, backwardsStrenghtValue);
+            }
+        }
+    }
 
     private float GetRandomizeStrengthsValue()
     {

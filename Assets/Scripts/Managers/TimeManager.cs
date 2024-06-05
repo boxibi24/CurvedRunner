@@ -16,6 +16,11 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Gradient graddientSunsetToNight;
 
     [SerializeField] private Light globalLight;
+    private string BLEND_PARAM_NAME = "_Blend";
+    private string TEXTURE1_PARAM_NAME = "_Texture1";
+    private string TEXTURE2_PARAM_NAME = "_Texture2";
+    [SerializeField] private Texture2D skyboxTexture1;
+    [SerializeField] private Texture2D skyboxTexture2;
 
     public static TimeManager Instance { get; private set; }
 
@@ -28,6 +33,15 @@ public class TimeManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        // Starts at night
+        RenderSettings.skybox.SetFloat(BLEND_PARAM_NAME, 0);
+        RenderSettings.skybox.SetTexture(TEXTURE1_PARAM_NAME, skyboxTexture1);
+        RenderSettings.skybox.SetTexture(TEXTURE2_PARAM_NAME, skyboxTexture2);
+        StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
+        StartCoroutine(LerpLight(graddientSunsetToNight, 10f));
+    }
 
     private int minutes;
 
@@ -45,7 +59,7 @@ public class TimeManager : MonoBehaviour
     { get { return days; } set { days = value; } }
 
     private float tempSecond;
-
+    
     public void Update()
     {
         tempSecond += Time.deltaTime;

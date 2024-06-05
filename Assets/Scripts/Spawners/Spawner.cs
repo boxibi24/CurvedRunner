@@ -12,7 +12,6 @@ public class Spawner : MonoBehaviour
     [SerializeField, ShowIf("randomizeSpawnTime")] private float spawnTimeMin;
     private float spawnTimer = 0f;
     private float spawnInterval = 0f;
-    private float updateShaderTimer = 1f;
     private bool shouldSpawn = false;
     [SerializeField] private bool isReverseDirection;
 
@@ -71,23 +70,26 @@ public class Spawner : MonoBehaviour
                 }
             }
         }
-        updateShaderTimer -= Time.deltaTime;
-        if (updateShaderTimer < 0)
-        {
-            updateShaderTimer = 1;
-            CurvedShaderManager.SetShaderStrenghtsOnRenderers(GetComponentsInChildren<Renderer>());
-        }
     }
 
     private void spawnRandomObjectInList()
     {
+        GameObject spawnedGameObject;
         if (isReverseDirection)
         {
-            Instantiate(spawnList[UnityEngine.Random.Range(0, spawnList.Count)], transform.position, Quaternion.Euler(new Vector3(0,180,0))) ;
+            spawnedGameObject = Instantiate(spawnList[UnityEngine.Random.Range(0, spawnList.Count)], transform.position, Quaternion.Euler(new Vector3(0,180,0))) ;
         }
         else
         {
-            Instantiate(spawnList[UnityEngine.Random.Range(0, spawnList.Count)], transform);
+            spawnedGameObject = Instantiate(spawnList[UnityEngine.Random.Range(0, spawnList.Count)], transform);
+        }
+        if (spawnedGameObject.TryGetComponent<Renderer>(out Renderer renderer))
+        {
+            CurvedShaderManager.SetShaderStrenghtsOnRenderers(renderer);
+        }
+        else
+        {
+            spawnedGameObject.GetComponentsInChildren<Renderer>();
         }
     }
 }

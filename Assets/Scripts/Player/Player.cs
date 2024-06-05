@@ -58,11 +58,6 @@ public class Player : MonoBehaviour
         else { SetPlayerPositionState(PlayerPositionState.Middle); }
     }
 
-    private void Update()
-    {
-    }
-
-
     private void SetPlayerPositionState(PlayerPositionState state)
     {
         if (!isJumping)
